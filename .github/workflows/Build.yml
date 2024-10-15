@@ -1,10 +1,13 @@
 ﻿name: 🏗️ Build and ✅ Test
 
 on:
-  pull_request:
+  push:
     branches:
       - main
       - initial-create
+  pull_request:
+    branches:
+      - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
