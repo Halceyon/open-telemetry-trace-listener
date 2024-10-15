@@ -1,12 +1,10 @@
 ﻿name: 🏗️ Build and ✅ Test
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
+      - initial-create
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -57,3 +55,15 @@ jobs:
           & "vstest.console.exe" "$($_.FullName)"
         }
       shell: pwsh
+
+    - name: 📦 Pack Nuget package
+      run: |
+        nuget pack -OutputDirectory "${{ github.workspace }}\output" -Properties Configuration=Release
+      shell: pwsh
+
+    - name: 🛰️ Upload Nuget package
+      uses: actions/upload-artifact@v2
+      with:
+        name: nuget-package
+        path: ${{ github.workspace }}/output/*.nupkg
+        retention-days: 14
