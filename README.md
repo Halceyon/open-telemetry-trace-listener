@@ -12,9 +12,7 @@ Install-Package OpenTelemetry.TraceListener
 
 ## Usage with System.Diagnostics
 
-To use the Open Telemetry Trace Listener with existing System.Diagnostics trace logging, follow these steps:
-
-Configure the Trace Listener in your configuration file: Add the trace listener to the system.diagnostics section of your App.config or Web.config file.
+Add the trace listener to the system.diagnostics section of your App.config or Web.config file.
 
 ```xml
 <configuration>
@@ -30,7 +28,7 @@ Configure the Trace Listener in your configuration file: Add the trace listener 
 </configuration>
 ```
 
-Use System.Diagnostics.Trace in your code: You can now use the System.Diagnostics.Trace class to log trace information. The Open Telemetry Trace Listener will capture these traces and send them to the configured backend.
+You can now use the System.Diagnostics.Trace class to log trace information. The Open Telemetry Trace Listener will capture these traces and send them to the configured backend.
 
 ```cs
 using System.Diagnostics;

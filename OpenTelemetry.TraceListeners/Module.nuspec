@@ -4,7 +4,7 @@
 		<!-- Required elements-->
 		<id>OpenTelemetry.TraceListeners</id>
 		<version>0.0.1</version>
-		<description>OpenTelemetry.TraceListeners</description>
+		<description>Open Telemetry Trace Listener enables you to use existing System.Diagnostics trace logging to capture and send trace data to various backends for analysis and monitoring</description>
 		<authors>craigp@codehq.co.za</authors>
 		<owners>craigp@codehq.co.za</owners>
 		<dependencies>
