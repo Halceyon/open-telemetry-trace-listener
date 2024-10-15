@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata>
+		<!-- Required elements-->
+		<id>OpenTelemetry.TraceListeners</id>
+		<version>0.0.1</version>
+		<description>OpenTelemetry.TraceListeners</description>
+		<authors>craigp@codehq.co.za</authors>
+		<owners>craigp@codehq.co.za</owners>
+		<dependencies>
+			<dependency id="System.Diagnostics.DiagnosticSource" version="8.0.0" />
+		</dependencies>
+	</metadata>
+
+	<files>
+		<file src="bin\Release\OpenTelemetry.TraceListeners*" target="lib\net462" />
+	</files>
+</package>
