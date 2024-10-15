@@ -83,7 +83,7 @@
     <Compile Include="OpenTelemetryTraceListenerTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpenTelemetry.TraceListeners\OpenTelemetry.TraceListener.csproj">
+    <ProjectReference Include="..\OpenTelemetry.TraceListener\OpenTelemetry.TraceListener.csproj">
       <Project>{a10e364d-1933-4199-ad3b-475453c2827f}</Project>
       <Name>OpenTelemetry.TraceListener</Name>
     </ProjectReference>
