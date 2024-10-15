@@ -1,0 +1,43 @@
+﻿name: 🧑‍💻 Rebase maintenance/update-packages
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: read
+  issues: write
+
+jobs:
+  rebase:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'maintenance/update-packages'
+    runs-on: ubuntu-latest
+    permissions: write-all
+
+    steps:
+      - name: 🛒 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: maintenance/update-packages
+
+      - name: 🔧 Configure Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: 🌴 Fetch all branches
+        run: git fetch --all
+
+      - name: 📝 Rebase branch
+        run: |
+          git checkout maintenance/update-packages
+          git rebase origin/main
+
+      - name: ☠️ Push changes
+        run: |
+          git push origin HEAD:maintenance/update-packages --force
