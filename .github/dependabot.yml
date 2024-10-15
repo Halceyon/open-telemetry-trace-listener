@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: daily
+      time: "00:00"
+    target-branch: maintenance/update-packages
+    labels:
+      - dependencies
+    open-pull-requests-limit: 10
+    reviewers:
+      - halceyon
+    assignees:
+      - halceyon
+    commit-message:
+      prefix: fix
+      prefix-development: chore
+      include: scope
