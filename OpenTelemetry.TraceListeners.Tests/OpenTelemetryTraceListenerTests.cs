@@ -1,112 +1,101 @@
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace OpenTelemetry.TraceListeners.Tests
 {
     [TestFixture]
     public class OpenTelemetryTraceListenerTests
     {
+        private List<Activity> _capturedActivities = new List<Activity>();
+
+        [OneTimeSetUp]
+        public void OneTimeSetup()
+        {
+            Trace.Listeners.Clear();
+            var listener = new OpenTelemetryTraceListener();
+            Trace.Listeners.Add(listener);
+            var activitySource = new ActivitySource("TestTelemetry.Logs");
+            var activityListener = new ActivityListener
+            {
+                ActivityStopped = activity =>
+                {
+                    _capturedActivities.Add(activity);
+                },
+                ShouldListenTo = s => true,
+                Sample = (ref ActivityCreationOptions<ActivityContext> activityOptions) =>
+                    ActivitySamplingResult.AllData
+            };
+            ActivitySource.AddActivityListener(activityListener);
+        }
+
+        [SetUp]
+        public void Setup()
+        {
+            _capturedActivities.RemoveAll(activity => true);
+        }
+
+        [Test]
+        public void TraceEvent_WithFormatAndArgs_CreatesActivityWithSpecificDisplayName()
+        {
+            // Arrange
+
+            // Act
+            Trace.TraceInformation("This is a test message with {0} arguments", "two");
+
+            // Assert
+            Assert.That(_capturedActivities.Count, Is.EqualTo(1));
+            var capturedActivity = _capturedActivities[0];
+            Assert.That(capturedActivity.DisplayName, Is.EqualTo("Log: testhost.exe"));
+        }
+
         [Test]
         public void TraceEvent_WithFormatAndArgs_CreatesActivityWithFormattedMessage()
         {
             // Arrange
-            var listener = new OpenTelemetryTraceListener();
-            var eventCache = new TraceEventCache();
-            var source = "TestSource";
-            var eventType = TraceEventType.Information;
-            var id = 1;
-            var format = "This is a formatted message: {0}";
-            var args = new object[] { "arg1" };
 
             // Act
-            listener.TraceEvent(eventCache, source, eventType, id, format, args);
+            Trace.TraceInformation("This is a test message with {0} arguments", "two");
 
             // Assert
-            // Verify that the activity is created with the correct properties
-            // Assert the activity properties using your preferred testing framework
-        }
-
-        [Test]
-        public void TraceEvent_WithMessage_CreatesActivityWithMessage()
-        {
-            // Arrange
-            var listener = new OpenTelemetryTraceListener();
-            var eventCache = new TraceEventCache();
-            var source = "TestSource";
-            var eventType = TraceEventType.Information;
-            var id = 1;
-            var message = "This is a test message";
-
-            // Act
-            listener.TraceEvent(eventCache, source, eventType, id, message);
-
-            // Assert
-            // Verify that the activity is created with the correct properties
-            // Assert the activity properties using your preferred testing framework
+            Assert.That(_capturedActivities.Count, Is.EqualTo(1));
+            var capturedActivity = _capturedActivities[0];
+            Assert.That(capturedActivity.DisplayName, Is.EqualTo("Log: testhost.exe"));
+            Assert.That(capturedActivity.Tags.First(t => t.Key == "message").Value, Is.EqualTo("This is a test message with two arguments"));
+            Assert.That(capturedActivity.Tags.First(t => t.Key == "format").Value, Is.EqualTo("This is a test message with {0} arguments"));
+            Assert.That(_capturedActivities[0].TagObjects.First(t => t.Key == "args").Value, Is.EqualTo(new object[] { "two" }));
         }
 
         [Test]
         public void Write_WithoutActivity_CreatesActivityWithMessage()
         {
             // Arrange
-            var listener = new OpenTelemetryTraceListener();
             var message = "This is a test message";
 
             // Act
-            listener.Write(message);
+            Trace.Write(message);
 
             // Assert
-            // Verify that the activity is created with the correct properties
-            // Assert the activity properties using your preferred testing framework
-        }
-
-        [Test]
-        public void Write_WithActivity_SetsBaggageWithMessage()
-        {
-            // Arrange
-            var listener = new OpenTelemetryTraceListener();
-            var message = "This is a test message";
-            var activity = new Activity("TestActivity");
-
-            // Act
-            Activity.Current = activity;
-            listener.Write(message);
-
-            // Assert
-            // Verify that the activity baggage is set with the correct message
-            // Assert the activity baggage using your preferred testing framework
+            var capturedActivity = _capturedActivities[0];
+            Assert.That(_capturedActivities.Count, Is.EqualTo(1));
+            Assert.That(capturedActivity.Tags.First(t => t.Key == "message").Value, Is.EqualTo("This is a test message"));
         }
 
         [Test]
         public void WriteLine_WithoutActivity_CreatesActivityWithMessage()
         {
             // Arrange
-            var listener = new OpenTelemetryTraceListener();
             var message = "This is a test message";
 
             // Act
-            listener.WriteLine(message);
+            Trace.WriteLine(message);
 
             // Assert
-            // Verify that the activity is created with the correct properties
-            // Assert the activity properties using your preferred testing framework
-        }
-
-        [Test]
-        public void WriteLine_WithActivity_SetsBaggageWithMessage()
-        {
-            // Arrange
-            var listener = new OpenTelemetryTraceListener();
-            var message = "This is a test message";
-            var activity = new Activity("TestActivity");
-
-            // Act
-            Activity.Current = activity;
-            listener.WriteLine(message);
-
-            // Assert
-            // Verify that the activity baggage is set with the correct message
-            // Assert the activity baggage using your preferred testing framework
+            Assert.That(_capturedActivities.Count, Is.EqualTo(1));
+            var capturedActivity = _capturedActivities[0];
+            Assert.That(_capturedActivities.Count, Is.EqualTo(1));
+            Assert.That(capturedActivity.Tags.First(t => t.Key == "message").Value, Is.EqualTo("This is a test message"));
         }
     }
 }
