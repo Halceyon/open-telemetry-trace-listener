@@ -2,17 +2,23 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<!-- Required elements-->
-		<id>OpenTelemetry.TraceListeners</id>
+		<id>Open.Telemetry.TraceListener</id>
 		<version>0.0.1</version>
+		<title>OpenTelemetry.TraceListener</title>
+		<tags>OpenTelemetry, Logging, .NET Framework</tags>
+		<authors>Halceyon</authors>
+		<owners>Halceyon</owners>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<readme>docs\README.md</readme>
 		<description>Open Telemetry Trace Listener enables you to use existing System.Diagnostics trace logging to capture and send trace data to various backends for analysis and monitoring</description>
-		<authors>craigp@codehq.co.za</authors>
-		<owners>craigp@codehq.co.za</owners>
 		<dependencies>
 			<dependency id="System.Diagnostics.DiagnosticSource" version="8.0.0" />
 		</dependencies>
+		<license type="expression">MIT</license>
+		<projectUrl>https://github.com/Halceyon/open-telemetry-trace-listener</projectUrl>
 	</metadata>
-
 	<files>
 		<file src="bin\Release\OpenTelemetry.TraceListeners*" target="lib\net462" />
+		<file src="..\README.md" target="docs\" />
 	</files>
 </package>
