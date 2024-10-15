@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace OpenTelemetry.TraceListeners.Tests
+namespace OpenTelemetry.TraceListener.Tests
 {
     [TestFixture]
     public class OpenTelemetryTraceListenerTests

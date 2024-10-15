@@ -1,12 +1,12 @@
 ﻿using System.Configuration;
 using System.Diagnostics;
 
-namespace OpenTelemetry.TraceListeners
+namespace OpenTelemetry.TraceListener
 {
     /// <summary>
     /// Represents a trace listener that integrates with OpenTelemetry.
     /// </summary>
-    public class OpenTelemetryTraceListener : TraceListener
+    public class OpenTelemetryTraceListener : System.Diagnostics.TraceListener
     {
         /// <summary>
         /// Writes trace information, including the message, to the listener specific output.
