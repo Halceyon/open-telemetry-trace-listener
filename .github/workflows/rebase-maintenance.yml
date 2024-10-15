@@ -20,24 +20,24 @@ jobs:
     permissions: write-all
 
     steps:
-      - name: Checkout repository
+      - name: 🛒 Checkout repository
         uses: actions/checkout@v4
         with:
           ref: maintenance/update-packages
 
-      - name: Configure Git
+      - name: 🔧 Configure Git
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-      - name: Fetch all branches
+      - name: 🌴 Fetch all branches
         run: git fetch --all
 
-      - name: Rebase branch
+      - name: 📝 Rebase branch
         run: |
           git checkout maintenance/update-packages
           git rebase origin/main
 
-      - name: Push changes
+      - name: ☠️ Push changes
         run: |
           git push origin HEAD:maintenance/update-packages --force
