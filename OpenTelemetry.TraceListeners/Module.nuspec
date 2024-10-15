@@ -2,9 +2,10 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<!-- Required elements-->
-		<id>Open.Telemetry.TraceListeners</id>
+		<id>Open.Telemetry.TraceListener</id>
 		<version>0.0.1</version>
-		<title>OpenTelemetry.TraceListeners</title>
+		<title>OpenTelemetry.TraceListener</title>
+		<tags>OpenTelemetry, Logging, .NET Framework</tags>
 		<authors>Halceyon</authors>
 		<owners>Halceyon</owners>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>

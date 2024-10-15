@@ -8,7 +8,7 @@ This repository provides a trace listener for OpenTelemetry, a set of APIs and l
 To integrate the OpenTelemetry Trace Listener into your .NET Framework project, install the package via NuGet by running the following command in the NuGet Package Manager Console:
 
 ```powershell
-Install-Package OpenTelemetry.TraceListener
+Install-Package Open.Telemetry.TraceListener
 ```
 
 ## Usage with System.Diagnostics
@@ -57,7 +57,7 @@ To log your existing `System.Diagnostics` traces to a [Seq](https://datalust.co/
    Install-Package OpenTelemetry.Exporter.OpenTelemetryProtocol
    Install-Package OpenTelemetry.Instrumentation.AspNet -Version 1.9.0-beta.1
    Install-Package OpenTelemetry.Instrumentation.AspNet.TelemetryHttpModule -Version 1.9.0-beta.1
-   Install-Package OpenTelemetry.TraceListener
+   Install-Package Open.Telemetry.TraceListener
    ```
 
 2. Add the trace provider to the `Application_Start` event in your application:
