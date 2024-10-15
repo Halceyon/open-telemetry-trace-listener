@@ -8,7 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2FAEFE2F-46F4-4EDB-9083-4469BDAA5F53}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		Build.yml = Build.yml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.TraceListeners.Tests", "OpenTelemetry.TraceListeners.Tests\OpenTelemetry.TraceListeners.Tests.csproj", "{915ECA66-7B9B-4FC5-8938-F93B0C95C2C2}"
