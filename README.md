@@ -1,11 +1,11 @@
-# Open Telemetry Trace Listener
 
-This project is a trace listener for Open Telemetry, a set of APIs and libraries used for distributed tracing and observability in applications. The trace listener allows you to capture and send trace data to various backends for analysis and monitoring using your existing System.Diagnostics traces and logs.
+# OpenTelemetry Trace Listener
+
+This repository provides a trace listener for OpenTelemetry, a set of APIs and libraries used to achieve distributed tracing and observability within applications. The trace listener enables you to capture and transmit trace data from `System.Diagnostics` traces and logs to various backends for analysis and monitoring.
 
 ## Installation
 
-To use the Open Telemetry Trace Listener in your .NET Framework project, you can install it via NuGet.
-Simply run the following command in the NuGet Package Manager Console:
+To integrate the OpenTelemetry Trace Listener into your .NET Framework project, install the package via NuGet by running the following command in the NuGet Package Manager Console:
 
 ```powershell
 Install-Package OpenTelemetry.TraceListener
@@ -13,7 +13,7 @@ Install-Package OpenTelemetry.TraceListener
 
 ## Usage with System.Diagnostics
 
-Add the trace listener to the system.diagnostics section of your App.config or Web.config file.
+To configure the OpenTelemetry Trace Listener, add it to the `system.diagnostics` section in your `App.config` or `Web.config` file:
 
 ```xml
 <configuration>
@@ -29,9 +29,9 @@ Add the trace listener to the system.diagnostics section of your App.config or W
 </configuration>
 ```
 
-You can now use the System.Diagnostics.Trace class to log trace information. The Open Telemetry Trace Listener will capture these traces and send them to the configured backend.
+After configuration, you can log trace information using the `System.Diagnostics.Trace` class. The OpenTelemetry Trace Listener will capture these traces and send them to the specified backend.
 
-```cs
+```csharp
 using System.Diagnostics;
 
 public class Program
@@ -46,89 +46,97 @@ public class Program
 }
 ```
 
-## Example
+## Example: Logging to Seq
 
-To set up logging your existing System.Diagnostics traces to a [Seq](https://datalust.co/seq) server, follow these steps:
+To log your existing `System.Diagnostics` traces to a [Seq](https://datalust.co/seq) server, follow the steps below.
 
-Install the Open Telemetry Nuget packages:
+1. Install the necessary OpenTelemetry NuGet packages:
 
-```powershelll
-Install-Package OpenTelemetry.Exporter.Console
-Install-Package OpenTelemetry.Exporter.OpenTelemetryProtocol
-Install-Package OpenTelemetry.Instrumentation.AspNet -Version 1.9.0-beta.1
-Install-Package OpenTelemetry.Instrumentation.AspNet.TelemetryHttpModule -Version 1.9.0-beta.1
-Install-Package OpenTelemetry.TraceListener
-```
+   ```powershell
+   Install-Package OpenTelemetry.Exporter.Console
+   Install-Package OpenTelemetry.Exporter.OpenTelemetryProtocol
+   Install-Package OpenTelemetry.Instrumentation.AspNet -Version 1.9.0-beta.1
+   Install-Package OpenTelemetry.Instrumentation.AspNet.TelemetryHttpModule -Version 1.9.0-beta.1
+   Install-Package OpenTelemetry.TraceListener
+   ```
 
-Add the Trace Provider to the Application_Start event.
+2. Add the trace provider to the `Application_Start` event in your application:
 
-```cs
-private TracerProvider _tracerProvider;
+   ```csharp
+   private TracerProvider _tracerProvider;
 
-protected void Application_Start(object sender, EventArgs e)
-{
-    var endpoint = ConfigurationManager.AppSettings["OpenTelemetry:EndPoint"] ?? "http://localhost:5341";
-    var apiKey = ConfigurationManager.AppSettings["OpenTelemetry:ApiKey"] ?? "";
-    var sourceName = ConfigurationManager.AppSettings["OpenTelemetry:SourceName"] ?? "Web";
+   protected void Application_Start(object sender, EventArgs e)
+   {
+       var endpoint = ConfigurationManager.AppSettings["OpenTelemetry:EndPoint"] ?? "http://localhost:5341";
+       var apiKey = ConfigurationManager.AppSettings["OpenTelemetry:ApiKey"] ?? "";
+       var sourceName = ConfigurationManager.AppSettings["OpenTelemetry:SourceName"] ?? "Web";
 
-    _tracerProvider = Sdk.CreateTracerProviderBuilder()
-            .AddAspNetInstrumentation()
-            .SetResourceBuilder(
-                ResourceBuilder.CreateDefault()
-                    .AddService(serviceName: sourceName))
-            .AddSource($"{sourceName}.Logs")
-            .AddConsoleExporter()
-            .AddOtlpExporter(options =>
-            {
-                options.Endpoint = new Uri($"{_endpoint}/ingest/otlp/v1/traces");
-                options.Protocol = OtlpExportProtocol.HttpProtobuf;
-                options.Headers = $"X-Seq-ApiKey={_apiKey}";
-            })
-        .Build();
-}
-```
+       _tracerProvider = Sdk.CreateTracerProviderBuilder()
+           .AddAspNetInstrumentation()
+           .SetResourceBuilder(
+               ResourceBuilder.CreateDefault()
+                   .AddService(serviceName: sourceName))
+           .AddSource($"{sourceName}.Logs")
+           .AddConsoleExporter()
+           .AddOtlpExporter(options =>
+           {
+               options.Endpoint = new Uri($"{endpoint}/ingest/otlp/v1/traces");
+               options.Protocol = OtlpExportProtocol.HttpProtobuf;
+               options.Headers = $"X-Seq-ApiKey={apiKey}";
+           })
+           .Build();
+   }
+   ```
 
-Add the shared listener to the system.diagnostics section of your web.config and assign the listener to the sources you want to log.
+3. Update your `Web.config` to include the shared listener within the `system.diagnostics` section, and assign it to the sources you wish to log:
 
-```xml
-<system.diagnostics>
-    <sharedListeners>
-        <add name="OpenTelemetryTraceListener"
-            type="OpenTelemetry.TraceListener, OpenTelemetry.TraceListener"
-            initializeData="Example.Api" />
-    </sharedListeners>
-    <sources>
-        <source name="Bus" switchValue="All">
-            <listeners>
-                <clear />
-                <add name="sqldatabase" />
-                <add name="TelemetryListener" />
-            </listeners>
-        </source>
-        <source name="Web" switchValue="Information,Warning,Error,Critical">
-            <listeners>
-                <clear />
-                <add name="sqldatabase" />
-                <add name="TelemetryListener" />
-            </listeners>
-        </source>
-    </sources>
-    <trace autoflush="true" indentsize="0">
-        <listeners>
-            <clear />
-            <add name="OpenTelemetryTraceListener"
+   ```xml
+   <system.diagnostics>
+       <sharedListeners>
+           <add name="OpenTelemetryTraceListener"
                 type="OpenTelemetry.TraceListener, OpenTelemetry.TraceListener"
                 initializeData="Example.Api" />
-        </listeners>
-    </trace>
-</system.diagnostics>
-```
+       </sharedListeners>
+       <sources>
+           <source name="Bus" switchValue="All">
+               <listeners>
+                   <clear />
+                   <add name="sqldatabase" />
+                   <add name="TelemetryListener" />
+               </listeners>
+           </source>
+           <source name="Web" switchValue="Information,Warning,Error,Critical">
+               <listeners>
+                   <clear />
+                   <add name="sqldatabase" />
+                   <add name="TelemetryListener" />
+               </listeners>
+           </source>
+       </sources>
+       <trace autoflush="true" indentsize="0">
+           <listeners>
+               <clear />
+               <add name="OpenTelemetryTraceListener"
+                    type="OpenTelemetry.TraceListener, OpenTelemetry.TraceListener"
+                    initializeData="Example.Api" />
+           </listeners>
+       </trace>
+   </system.diagnostics>
+   ```
 
-And then finally dispose the trace provider on application shutdown.
+4. Ensure proper disposal of the trace provider during application shutdown:
 
-```cs
-protected void Application_End(object sender, EventArgs e)
-{
-    _tracerProvider?.Dispose();
-}
-```
+   ```csharp
+   protected void Application_End(object sender, EventArgs e)
+   {
+       _tracerProvider?.Dispose();
+   }
+   ```
+
+## Contributing
+
+We welcome contributions to improve this project. Please feel free to submit issues, pull requests, or feature suggestions.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
