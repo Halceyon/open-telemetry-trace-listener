@@ -1,6 +1,8 @@
 
 # OpenTelemetry Trace Listener
 
+[![🏗️ Build and ✅ Test](https://github.com/Halceyon/open-telemetry-trace-listener/actions/workflows/Build.yml/badge.svg)](https://github.com/Halceyon/open-telemetry-trace-listener/actions/workflows/Build.yml)
+
 This repository provides a trace listener for OpenTelemetry, a set of APIs and libraries used to achieve distributed tracing and observability within applications. The trace listener enables you to capture and transmit trace data from `System.Diagnostics` traces and logs to various backends for analysis and monitoring.
 
 ## Installation
