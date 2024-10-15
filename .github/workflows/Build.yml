@@ -95,6 +95,7 @@ jobs:
       run: |
         nuget pack ./OpenTelemetry.TraceListeners/Module.nuspec -OutputDirectory ./output -Version ${{ needs.version.outputs.version }}
       shell: pwsh
+      if: github.ref == 'refs/heads/main'
 
     - name: 🛰️ Upload Nuget package
       uses: actions/upload-artifact@v4
@@ -102,3 +103,4 @@ jobs:
         name: nuget-package
         path: ${{ github.workspace }}/output/*.nupkg
         retention-days: 14
+      if: github.ref == 'refs/heads/main'
