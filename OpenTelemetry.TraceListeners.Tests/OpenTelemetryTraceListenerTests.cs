@@ -8,7 +8,7 @@ namespace OpenTelemetry.TraceListeners.Tests
     [TestFixture]
     public class OpenTelemetryTraceListenerTests
     {
-        private List<Activity> _capturedActivities = new List<Activity>();
+        private readonly List<Activity> _capturedActivities = new List<Activity>();
 
         [OneTimeSetUp]
         public void OneTimeSetup()
