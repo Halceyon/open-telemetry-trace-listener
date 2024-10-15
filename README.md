@@ -1,6 +1,6 @@
 # Open Telemetry Trace Listener
 
-This project is a trace listener for Open Telemetry, a set of APIs and libraries used for distributed tracing and observability in applications. The trace listener allows you to capture and send trace data to various backends for analysis and monitoring.
+This project is a trace listener for Open Telemetry, a set of APIs and libraries used for distributed tracing and observability in applications. The trace listener allows you to capture and send trace data to various backends for analysis and monitoring using your existing System.Diagnostics traces and logs.
 
 ## Installation
 
@@ -50,7 +50,17 @@ public class Program
 
 To set up logging your existing System.Diagnostics traces to a [Seq](https://datalust.co/seq) server, follow these steps:
 
-### Add the Trace Provider to the Application Start:
+Install the Open Telemetry Nuget packages:
+
+```powershelll
+Install-Package OpenTelemetry.Exporter.Console
+Install-Package OpenTelemetry.Exporter.OpenTelemetryProtocol
+Install-Package OpenTelemetry.Instrumentation.AspNet -Version 1.9.0-beta.1
+Install-Package OpenTelemetry.Instrumentation.AspNet.TelemetryHttpModule -Version 1.9.0-beta.1
+Install-Package OpenTelemetry.TraceListener
+```
+
+Add the Trace Provider to the Application_Start event.
 
 ```cs
 private TracerProvider _tracerProvider;
@@ -78,7 +88,44 @@ protected void Application_Start(object sender, EventArgs e)
 }
 ```
 
-### Dispose the trace provider on application end
+Add the shared listener to the system.diagnostics section of your web.config and assign the listener to the sources you want to log.
+
+```xml
+<system.diagnostics>
+    <sharedListeners>
+        <add name="OpenTelemetryTraceListener"
+            type="OpenTelemetry.TraceListener, OpenTelemetry.TraceListener"
+            initializeData="Example.Api" />
+    </sharedListeners>
+    <sources>
+        <source name="Bus" switchValue="All">
+            <listeners>
+                <clear />
+                <add name="sqldatabase" />
+                <add name="TelemetryListener" />
+            </listeners>
+        </source>
+        <source name="Web" switchValue="Information,Warning,Error,Critical">
+            <listeners>
+                <clear />
+                <add name="sqldatabase" />
+                <add name="TelemetryListener" />
+            </listeners>
+        </source>
+    </sources>
+    <trace autoflush="true" indentsize="0">
+        <listeners>
+            <clear />
+            <add name="OpenTelemetryTraceListener"
+                type="OpenTelemetry.TraceListener, OpenTelemetry.TraceListener"
+                initializeData="Example.Api" />
+        </listeners>
+    </trace>
+</system.diagnostics>
+```
+
+And then finally dispose the trace provider on application shutdown.
+
 ```cs
 protected void Application_End(object sender, EventArgs e)
 {
