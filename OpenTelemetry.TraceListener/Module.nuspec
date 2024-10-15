@@ -18,7 +18,7 @@
 		<projectUrl>https://github.com/Halceyon/open-telemetry-trace-listener</projectUrl>
 	</metadata>
 	<files>
-		<file src="bin\Release\OpenTelemetry.TraceListeners*" target="lib\net462" />
+		<file src="bin\Release\OpenTelemetry.TraceListener*" target="lib\net462" />
 		<file src="..\README.md" target="docs\" />
 	</files>
 </package>
