@@ -1,0 +1,50 @@
+# GitVersion.yml
+mode: Mainline
+branches:
+  main:
+    regex: ^main$
+    tag: ""
+    source-branches: []
+    is-mainline: true
+    tracks-release-branches: true
+    is-release-branch: true
+    increment: Minor
+  maintenance:
+    regex: ^maintenance[/-]
+    source-branches: [main]
+    is-mainline: false
+    tracks-release-branches: false
+    increment: Patch
+    tag: useBranchName
+  feature:
+    regex: ^feature[/-]
+    source-branches: [develop, main]
+    increment: Patch
+    is-mainline: false
+    tracks-release-branches: true
+    tag: useBranchName
+  release:
+    regex: ^release[/-]
+    source-branches: [develop]
+    is-mainline: false
+    tracks-release-branches: false
+    tag: rc
+  hotfix:
+    regex: ^hotfix[/-]
+    source-branches: [main]
+    is-mainline: false
+    tracks-release-branches: false
+    tag: hotfix
+  support:
+    regex: ^support[/-]
+    source-branches: [main]
+    is-mainline: false
+    tracks-release-branches: false
+    tag: ""
+ignore:
+  sha: []
+merge-message-formats: {}
+commit-message-incrementing: Enabled
+patch-version-bump-message: ^chore\\(.*\\):.*$
+minor-version-bump-message: ^feat\\(.*\\):.*$
+major-version-bump-message: ^BREAKING CHANGE:.*$
