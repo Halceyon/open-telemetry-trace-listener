@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - maintenance/update-assembly-version
   pull_request:
     branches:
       - main
