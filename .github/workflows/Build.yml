@@ -47,6 +47,7 @@ jobs:
       uses: gittools/actions/gitversion/setup@v3.0.0
       with:
         versionSpec: "5.x"
+      if: github.ref == 'refs/heads/main'
 
     - name: 🔄 Determine Version
       id: version_step
@@ -55,17 +56,13 @@ jobs:
         useConfigFile: true,
         configFilePath: GitVersion.yml
         updateAssemblyInfo: true
+      if: github.ref == 'refs/heads/main'
 
     - name: 🛠️ Setup MSBuild
       uses: microsoft/setup-msbuild@v1.0.2
 
     - name: 🔨 Install Dependencies
       run: nuget restore
-
-    - name: 🔄 Update AssemblyInfo
-      run: |
-        dotnet tool install --global GitVersion.Tool
-        dotnet gitversion /updateassemblyinfo
 
     - name: 🏭 Build
       run: msbuild /p:Configuration=Release
