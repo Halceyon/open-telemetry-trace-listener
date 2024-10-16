@@ -10,7 +10,7 @@ This repository provides a trace listener for OpenTelemetry, a set of APIs and l
 To integrate the OpenTelemetry Trace Listener into your .NET Framework project, install the package via NuGet by running the following command in the NuGet Package Manager Console:
 
 ```powershell
-Install-Package Open.Telemetry.TraceListener
+Install-Package Diagnostics.OpenTelemetry
 ```
 
 ## Usage with System.Diagnostics
@@ -22,9 +22,7 @@ To configure the OpenTelemetry Trace Listener, add it to the `system.diagnostics
   <system.diagnostics>
     <trace>
       <listeners>
-        <add name="OpenTelemetryTraceListener"
-             type="OpenTelemetry.TraceListener, OpenTelemetry.TraceListener"
-             initializeData="your-backend-endpoint" />
+        <add name="OpenTelemetryTraceListener" type="Diagnostics.OpenTelemetry.OpenTelemetryTraceListener, Diagnostics.OpenTelemetry" />
       </listeners>
     </trace>
   </system.diagnostics>
@@ -59,7 +57,7 @@ To log your existing `System.Diagnostics` traces to a [Seq](https://datalust.co/
    Install-Package OpenTelemetry.Exporter.OpenTelemetryProtocol
    Install-Package OpenTelemetry.Instrumentation.AspNet -Version 1.9.0-beta.1
    Install-Package OpenTelemetry.Instrumentation.AspNet.TelemetryHttpModule -Version 1.9.0-beta.1
-   Install-Package Open.Telemetry.TraceListener
+   Install-Package Diagnostics.OpenTelemetry
    ```
 
 2. Add the trace provider to the `Application_Start` event in your application:
@@ -95,32 +93,28 @@ To log your existing `System.Diagnostics` traces to a [Seq](https://datalust.co/
    ```xml
    <system.diagnostics>
        <sharedListeners>
-           <add name="OpenTelemetryTraceListener"
-                type="OpenTelemetry.TraceListener, OpenTelemetry.TraceListener"
-                initializeData="Example.Api" />
+           <add name="OpenTelemetryTraceListener" type="Diagnostics.OpenTelemetry.OpenTelemetryTraceListener, Diagnostics.OpenTelemetry" />
        </sharedListeners>
        <sources>
            <source name="Bus" switchValue="All">
                <listeners>
                    <clear />
                    <add name="sqldatabase" />
-                   <add name="TelemetryListener" />
+                   <add name="OpenTelemetryTraceListener" />
                </listeners>
            </source>
            <source name="Web" switchValue="Information,Warning,Error,Critical">
                <listeners>
                    <clear />
                    <add name="sqldatabase" />
-                   <add name="TelemetryListener" />
+                   <add name="OpenTelemetryTraceListener" />
                </listeners>
            </source>
        </sources>
        <trace autoflush="true" indentsize="0">
            <listeners>
                <clear />
-               <add name="OpenTelemetryTraceListener"
-                    type="OpenTelemetry.TraceListener, OpenTelemetry.TraceListener"
-                    initializeData="Example.Api" />
+               <add name="OpenTelemetryTraceListener" type="Diagnostics.OpenTelemetry.OpenTelemetryTraceListener, Diagnostics.OpenTelemetry" />
            </listeners>
        </trace>
    </system.diagnostics>
