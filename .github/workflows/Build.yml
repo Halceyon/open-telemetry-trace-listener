@@ -77,7 +77,7 @@ jobs:
       shell: pwsh
 
     - name: 📦 Pack Nuget package
-      run: nuget pack ./OpenTelemetry.TraceListener/Module.nuspec -OutputDirectory ./output -Version ${{ steps.version_step.outputs.semVer }}
+      run: nuget pack .//Diagnostics.OpenTelemetry/Module.nuspec -OutputDirectory ./output -Version ${{ steps.version_step.outputs.semVer }}
       shell: pwsh
       if: github.ref == 'refs/heads/main'
 
