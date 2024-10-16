@@ -2,9 +2,9 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<!-- Required elements-->
-		<id>Open.Telemetry.TraceListener</id>
+		<id>Diagnostics.OpenTelemetry</id>
 		<version>0.0.1</version>
-		<title>OpenTelemetry.TraceListener</title>
+		<title>Diagnostics.OpenTelemetry</title>
 		<tags>OpenTelemetry, Logging, .NET Framework</tags>
 		<authors>Halceyon</authors>
 		<owners>Halceyon</owners>
@@ -18,7 +18,7 @@
 		<projectUrl>https://github.com/Halceyon/open-telemetry-trace-listener</projectUrl>
 	</metadata>
 	<files>
-		<file src="bin\Release\OpenTelemetry.TraceListener*" target="lib\net462" />
+		<file src="bin\Release\Diagnostics.OpenTelemetry*" target="lib\net462" />
 		<file src="..\README.md" target="docs\" />
 	</files>
 </package>

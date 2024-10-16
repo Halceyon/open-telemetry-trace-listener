@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using System.Diagnostics;
 
-namespace OpenTelemetry.TraceListener
+namespace Diagnostics.OpenTelemetry
 {
     /// <summary>
     /// Represents a trace listener that integrates with OpenTelemetry.
