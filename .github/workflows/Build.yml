@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - maintenance/update-assembly-version
   pull_request:
     branches:
       - main
@@ -76,6 +77,11 @@ jobs:
 
     - name: 🔨 Install Dependencies
       run: nuget restore
+
+    - name: 🔄 Update AssemblyInfo
+      run: |
+        dotnet tool install --global GitVersion.Tool
+        dotnet gitversion /updateassemblyinfo
 
     - name: 🏭 Build
       run: msbuild /p:Configuration=Release
