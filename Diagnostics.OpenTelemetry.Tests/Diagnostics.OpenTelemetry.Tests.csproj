@@ -175,7 +175,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="OpenTelemetry.Extensions.Hosting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7bd6737fe5b67e3c">
-      <HintPath>..\packages\OpenTelemetry.Extensions.Hosting.1.15.2\lib\net462\OpenTelemetry.Extensions.Hosting.dll</HintPath>
+      <HintPath>..\packages\OpenTelemetry.Extensions.Hosting.1.15.3\lib\net462\OpenTelemetry.Extensions.Hosting.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="OpenTelemetry.PersistentStorage.Abstractions, Version=1.0.3.1043, Culture=neutral, PublicKeyToken=7bd6737fe5b67e3c">
