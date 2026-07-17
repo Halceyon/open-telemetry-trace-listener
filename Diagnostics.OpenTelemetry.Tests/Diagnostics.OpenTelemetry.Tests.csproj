@@ -66,6 +66,10 @@
       <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.10.0.10\lib\net462\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.EnvironmentVariables, Version=10.0.0.10, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.EnvironmentVariables.10.0.10\lib\net462\Microsoft.Extensions.Configuration.EnvironmentVariables.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection, Version=10.0.0.10, Culture=neutral, PublicKeyToken=adb9793829ddae60">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.10.0.10\lib\net462\Microsoft.Extensions.DependencyInjection.dll</HintPath>
       <Private>True</Private>
@@ -94,32 +98,32 @@
       <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.10.0.10\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Logging.Configuration, Version=10.0.0.9, Culture=neutral, PublicKeyToken=adb9793829ddae60">
-      <HintPath>..\packages\Microsoft.Extensions.Logging.Configuration.10.0.9\lib\net462\Microsoft.Extensions.Logging.Configuration.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Logging.Configuration, Version=10.0.0.10, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Configuration.10.0.10\lib\net462\Microsoft.Extensions.Logging.Configuration.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Extensions.Options, Version=10.0.0.10, Culture=neutral, PublicKeyToken=adb9793829ddae60">
       <HintPath>..\packages\Microsoft.Extensions.Options.10.0.10\lib\net462\Microsoft.Extensions.Options.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Options.ConfigurationExtensions, Version=10.0.0.9, Culture=neutral, PublicKeyToken=adb9793829ddae60">
-      <HintPath>..\packages\Microsoft.Extensions.Options.ConfigurationExtensions.10.0.9\lib\net462\Microsoft.Extensions.Options.ConfigurationExtensions.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Options.ConfigurationExtensions, Version=10.0.0.10, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+      <HintPath>..\packages\Microsoft.Extensions.Options.ConfigurationExtensions.10.0.10\lib\net462\Microsoft.Extensions.Options.ConfigurationExtensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Extensions.Primitives, Version=10.0.0.10, Culture=neutral, PublicKeyToken=adb9793829ddae60">
       <HintPath>..\packages\Microsoft.Extensions.Primitives.10.0.10\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Identity.Client, Version=4.86.0.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae">
-      <HintPath>..\packages\Microsoft.Identity.Client.4.86.0\lib\net462\Microsoft.Identity.Client.dll</HintPath>
+    <Reference Include="Microsoft.Identity.Client, Version=4.86.1.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae">
+      <HintPath>..\packages\Microsoft.Identity.Client.4.86.1\lib\net462\Microsoft.Identity.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Identity.Client.Extensions.Msal, Version=4.86.0.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae">
-      <HintPath>..\packages\Microsoft.Identity.Client.Extensions.Msal.4.86.0\lib\netstandard2.0\Microsoft.Identity.Client.Extensions.Msal.dll</HintPath>
+    <Reference Include="Microsoft.Identity.Client.Extensions.Msal, Version=4.86.1.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae">
+      <HintPath>..\packages\Microsoft.Identity.Client.Extensions.Msal.4.86.1\lib\netstandard2.0\Microsoft.Identity.Client.Extensions.Msal.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.IdentityModel.Abstractions, Version=8.19.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\packages\Microsoft.IdentityModel.Abstractions.8.19.1\lib\net462\Microsoft.IdentityModel.Abstractions.dll</HintPath>
+    <Reference Include="Microsoft.IdentityModel.Abstractions, Version=8.19.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.IdentityModel.Abstractions.8.19.2\lib\net462\Microsoft.IdentityModel.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Testing.Extensions.MSBuild, Version=2.3.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -143,15 +147,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.TestPlatform.CoreUtilities, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\packages\Microsoft.TestPlatform.ObjectModel.18.7.0\lib\net462\Microsoft.TestPlatform.CoreUtilities.dll</HintPath>
+      <HintPath>..\packages\Microsoft.TestPlatform.ObjectModel.18.8.1\lib\net462\Microsoft.TestPlatform.CoreUtilities.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.TestPlatform.PlatformAbstractions, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\packages\Microsoft.TestPlatform.ObjectModel.18.7.0\lib\net462\Microsoft.TestPlatform.PlatformAbstractions.dll</HintPath>
+      <HintPath>..\packages\Microsoft.TestPlatform.ObjectModel.18.8.1\lib\net462\Microsoft.TestPlatform.PlatformAbstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.ObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\packages\Microsoft.TestPlatform.ObjectModel.18.7.0\lib\net462\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll</HintPath>
+      <HintPath>..\packages\Microsoft.TestPlatform.ObjectModel.18.8.1\lib\net462\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=4.6.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
@@ -163,19 +167,19 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="OpenTelemetry, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7bd6737fe5b67e3c">
-      <HintPath>..\packages\OpenTelemetry.1.16.0\lib\net462\OpenTelemetry.dll</HintPath>
+      <HintPath>..\packages\OpenTelemetry.1.17.0\lib\net462\OpenTelemetry.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="OpenTelemetry.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7bd6737fe5b67e3c">
-      <HintPath>..\packages\OpenTelemetry.Api.1.16.0\lib\net462\OpenTelemetry.Api.dll</HintPath>
+      <HintPath>..\packages\OpenTelemetry.Api.1.17.0\lib\net462\OpenTelemetry.Api.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="OpenTelemetry.Api.ProviderBuilderExtensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7bd6737fe5b67e3c">
-      <HintPath>..\packages\OpenTelemetry.Api.ProviderBuilderExtensions.1.16.0\lib\net462\OpenTelemetry.Api.ProviderBuilderExtensions.dll</HintPath>
+      <HintPath>..\packages\OpenTelemetry.Api.ProviderBuilderExtensions.1.17.0\lib\net462\OpenTelemetry.Api.ProviderBuilderExtensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="OpenTelemetry.Extensions.Hosting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7bd6737fe5b67e3c">
-      <HintPath>..\packages\OpenTelemetry.Extensions.Hosting.1.16.0\lib\net462\OpenTelemetry.Extensions.Hosting.dll</HintPath>
+      <HintPath>..\packages\OpenTelemetry.Extensions.Hosting.1.17.0\lib\net462\OpenTelemetry.Extensions.Hosting.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="OpenTelemetry.PersistentStorage.Abstractions, Version=1.1.0.1067, Culture=neutral, PublicKeyToken=7bd6737fe5b67e3c">
@@ -195,8 +199,8 @@
       <HintPath>..\packages\System.ClientModel.1.14.0\lib\netstandard2.0\System.ClientModel.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Collections.Immutable, Version=10.0.0.9, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\packages\System.Collections.Immutable.10.0.9\lib\net462\System.Collections.Immutable.dll</HintPath>
+    <Reference Include="System.Collections.Immutable, Version=10.0.0.10, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\packages\System.Collections.Immutable.10.0.10\lib\net462\System.Collections.Immutable.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Core" />
