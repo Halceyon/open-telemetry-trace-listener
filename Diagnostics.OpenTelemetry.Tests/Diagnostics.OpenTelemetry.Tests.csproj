@@ -38,8 +38,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Azure.Core, Version=1.64.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8">
-      <HintPath>..\packages\Azure.Core.1.64.0\lib\net462\Azure.Core.dll</HintPath>
+    <Reference Include="Azure.Core, Version=1.65.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8">
+      <HintPath>..\packages\Azure.Core.1.65.0\lib\net462\Azure.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Azure.Monitor.OpenTelemetry.Exporter, Version=1.10.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8">
@@ -50,8 +50,8 @@
       <HintPath>..\packages\Microsoft.ApplicationInsights.3.2.0\lib\net462\Microsoft.ApplicationInsights.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=10.0.0.14, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
-      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.10.0.14\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=11.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.11.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Extensions.Configuration, Version=10.0.0.14, Culture=neutral, PublicKeyToken=adb9793829ddae60">
